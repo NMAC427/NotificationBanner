@@ -93,7 +93,6 @@ open class NotificationBanner: BaseNotificationBanner {
         
         if let subtitle = subtitle {
             subtitleLabel = UILabel()
-            subtitleLabel!.type = .left
             subtitleLabel!.font = subtitleFont
             subtitleLabel!.numberOfLines = 1
             subtitleLabel!.textColor = .white
