@@ -19,13 +19,11 @@
 import UIKit
 import SnapKit
 
-import MarqueeLabel
-
 @objcMembers
 open class NotificationBanner: BaseNotificationBanner {
     
     /// The bottom most label of the notification if a subtitle is provided
-    public private(set) var subtitleLabel: MarqueeLabel?
+    public private(set) var subtitleLabel: UILabel?
     
     /// The view that is presented on the left side of the notification
     private var leftView: UIView?
@@ -75,8 +73,7 @@ open class NotificationBanner: BaseNotificationBanner {
         contentView.addSubview(labelsView)
         
         if let title = title {
-            titleLabel = MarqueeLabel()
-            (titleLabel as! MarqueeLabel).type = .left
+            titleLabel = UILabel()
             titleLabel!.font = titleFont
             titleLabel!.textColor = .white
             titleLabel!.text = title
@@ -95,7 +92,7 @@ open class NotificationBanner: BaseNotificationBanner {
         }
         
         if let subtitle = subtitle {
-            subtitleLabel = MarqueeLabel()
+            subtitleLabel = UILabel()
             subtitleLabel!.type = .left
             subtitleLabel!.font = subtitleFont
             subtitleLabel!.numberOfLines = 1
@@ -139,8 +136,6 @@ open class NotificationBanner: BaseNotificationBanner {
             }
         }
         
-        updateMarqueeLabelsDurations()
-        
     }
     
     public convenience init(attributedTitle: NSAttributedString,
@@ -170,11 +165,6 @@ open class NotificationBanner: BaseNotificationBanner {
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    internal override func updateMarqueeLabelsDurations() {
-        super.updateMarqueeLabelsDurations()
-        subtitleLabel?.speed = .duration(CGFloat(duration <= 3 ? 0.5 : duration - 3))
     }
     
 }
